@@ -9,6 +9,7 @@ var mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let AddNewUser = require('./mongoDB/mongoActions/AddNewUser')
+let DoesUserExist = require('./mongoDB/mongoActions/DoesUserExist')
 var app = express();
 
 // view engine setup
@@ -26,6 +27,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.post('/users', function(req, res){
   AddNewUser(req, res)
+})
+
+app.post('/userExist', function(req, res){
+  DoesUserExist(req, res)
 })
 app.listen(8000)
 

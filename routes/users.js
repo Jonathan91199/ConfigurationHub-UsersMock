@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
   //   userName: "Jonathan",
   //   userPassword: "9011j"
   // });
-
+  console.log(req.params)
   // models.save(()=>{console.log("Saved")})
   userModel.find({}, function (asd, sss) {
     console.log(asd, sss)
