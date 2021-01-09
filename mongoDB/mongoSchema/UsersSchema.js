@@ -7,7 +7,7 @@ const userSchema = new Schema({
     lastName : String,
     emailAddress : String,
     userName : String,
-    userPassword : String,
+    userPassword : String
 }, {collation : "users"})
 
 const userModel = mongoose.model("users", userSchema)

@@ -24,11 +24,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+mongoose.connect('mongodb://localhost:27017/ConfigurationHub-UserMock', function(){
+  console.log("\x1b[36m", "* * * Connected To Mongo DataBase * * *")
+});
+app.listen(8000)
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.post('/users', function(req, res){
-  AddNewUser(req, res)
-})
 
 app.post('/userExist', function(req, res){
   DoesUserExist(req, res)
@@ -36,12 +39,9 @@ app.post('/userExist', function(req, res){
 app.post('/newUserExist', function(req, res){
   DoesNewUserExist(req, res)
 })
-app.listen(8000)
-
-mongoose.connect('mongodb://localhost:27017/ConfigurationHub-UserMock', function(){
-  console.log("\x1b[36m", "* * * Connected To Mongo DataBase * * *")
-});
-
+app.post('/newUser', function(req, res){
+  AddNewUser(req, res)
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

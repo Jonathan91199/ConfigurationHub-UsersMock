@@ -1,13 +1,17 @@
-const userModel = require('../mongoSchema/UsersSchema')
+let userModel = require('../mongoSchema/UsersSchema')
 
 module.exports = function AddNewUser(req, res) {
-    const sentUserName = req.body.userName
-    const sentUserPassword = req.body.userPassword
+    console.log("asd")
+    const PARAMETERS = req.body
 
-    const newUserModel = new userModel({
-        userName: sentUserName,
-        userPassword: sentUserPassword
+    let newUserModel = new userModel({
+        "firstName": PARAMETERS.firstName,
+        "lastName": PARAMETERS.lastName,
+        "emailAddress": PARAMETERS.emailAddress,
+        "userName": PARAMETERS.userName,
+        "userPassword": PARAMETERS.password
     })
+    console.log(newUserModel)
 
     newUserModel.save(() => {
         console.log("New User Has Been Succefully Saved")
