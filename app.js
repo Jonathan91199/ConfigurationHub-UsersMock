@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let AddNewUser = require('./mongoDB/mongoActions/AddNewUser')
 let DoesUserExist = require('./mongoDB/mongoActions/DoesUserExist')
+let DoesNewUserExist = require('./mongoDB/mongoActions/DoesNewUserExist')
 var app = express();
 
 // view engine setup
@@ -31,6 +32,9 @@ app.post('/users', function(req, res){
 
 app.post('/userExist', function(req, res){
   DoesUserExist(req, res)
+})
+app.post('/newUserExist', function(req, res){
+  DoesNewUserExist(req, res)
 })
 app.listen(8000)
 
